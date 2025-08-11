@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SASSify</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="scss/main.css">
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">SASSify</div>
+
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#variables">Variables</a></li>
+        <li><a href="#mixin">Mixin</a></li>
+        <li><a href="#function">Function</a></li>
+        <li><a href="#extend">Extend</a></li>
+        <li><a href="#operators">Operators</a></li>
+      </ul>
+      <div class="theme-toggle">
+        <i class="fas fa-sun light-icon"></i>
+        <i class="fas fa-moon dark-icon"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="header">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Supercharge Your Styles with SASS</h1>
+        <p>SASS (Syntactically Awesome Stylesheets) is a powerful CSS preprocessor that makes your stylesheets clean, reusable, and easier to manage.</p>
+        <a href="#variables" class="scroll-btn">
+          <i class="fas fa-arrow-down"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Variables Section -->
+  <section id="variables" class="section variables-section">
+    <div class="container">
+      <h2 class="section-title">SASS Variables</h2>
+
+      <div class="section-wrapper">
+        <div class="text-content">
+          <p>Variables in SASS allow you to store values like colors, fonts, sizes, and reuse them throughout your stylesheets. This makes your code more manageable and consistent.</p>
+
+          <ul class="benefits">
+            <li><i class="fas fa-check-circle"></i> Improve maintainability of styles</li>
+            <li><i class="fas fa-check-circle"></i> Change one value, update everywhere</li>
+            <li><i class="fas fa-check-circle"></i> Make your design system more scalable</li>
+          </ul>
+        </div>
+
+        <div class="code-block">
+          <pre><code>
+  $primary-color: #6C63FF;
+
+  body {
+    background-color: $primary-color;
+  }
+          </code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mixins Section -->
+  <section id="mixin" class="section mixins-section">
+    <div class="container">
+      <h2 class="section-title">SASS Mixins</h2>
+
+      <p class="section-intro">
+        Mixins in SASS let you reuse entire blocks of styles with optional parameters. This makes your code cleaner and more maintainable.
+      </p>
+
+      <div class="card-wrapper">
+        <!-- Mixin Definition Card -->
+        <div class="code-card">
+          <h3>@mixin Definition</h3>
+          <pre><code>
+  @mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+          </code></pre>
+        </div>
+
+        <!-- Mixin Usage Card -->
+        <div class="code-card">
+          <h3>Usage</h3>
+          <pre><code>
+  .hero {
+    @include flex-center;
+  }
+          </code></pre>
+        </div>
+      </div>
+
+      <ul class="benefits">
+        <li><i class="fas fa-check-circle"></i> Reuse groups of CSS rules</li>
+        <li><i class="fas fa-check-circle"></i> Add dynamic parameters</li>
+        <li><i class="fas fa-check-circle"></i> Keep your code DRY and modular</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Functions Section -->
+  <section id="function" class="section functions-section">
+    <div class="container">
+      <h2 class="section-title">SASS Functions</h2>
+
+      <p class="section-intro">
+        Functions in SASS allow you to perform calculations and return values. You can use built-in functions like <code>darken()</code>, or write your own custom ones.
+      </p>
+
+      <div class="function-card-wrapper">
+        <!-- Built-in Function Card -->
+        <div class="function-card">
+          <h3>Built-in Function</h3>
+          <p class="card-description">Using <code>darken()</code> to make a color darker</p>
+          <pre><code>
+$base-color: #6C63FF;
+
+.button {
+  background-color: darken($base-color, 10%);
+}
+          </code></pre>
+        </div>
+
+        <!-- Custom Function Card -->
+        <div class="function-card">
+          <h3>Custom Function</h3>
+          <p class="card-description">Create your own spacing scale function</p>
+          <pre><code>
+@function calculate-spacing($multiplier) {
+  @return $multiplier * 8px;
+}
+
+.section {
+  padding: calculate-spacing(4);
+}
+          </code></pre>
+        </div>
+      </div>
+
+      <ul class="benefits">
+        <li><i class="fas fa-check-circle"></i> Use dynamic logic in your styles</li>
+        <li><i class="fas fa-check-circle"></i> Make spacing, colors & sizes consistent</li>
+        <li><i class="fas fa-check-circle"></i> Keep code clean and maintainable</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- Extend Section -->
+  <section id="extend" class="section extend-section">
+    <div class="container">
+      <h2 class="section-title">SASS @extend</h2>
+
+      <p class="section-intro">
+        The <code>@extend</code> directive in SASS lets one selector inherit the styles of another, reducing repetition and improving maintainability.
+      </p>
+
+      <div class="extend-card-wrapper">
+        <!-- Basic Example Card -->
+        <div class="extend-card">
+          <h3>Basic Usage</h3>
+          <p class="card-description">Reusing styles with <code>@extend</code></p>
+          <pre><code>
+.message {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+          </code></pre>
+        </div>
+
+        <!-- Placeholder Selector Card -->
+        <div class="extend-card">
+          <h3>Placeholder Selectors</h3>
+          <p class="card-description">Use <code>%placeholders</code> with <code>@extend</code> for cleaner code</p>
+          <pre><code>
+%button-base {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  @extend %button-base;
+  background-color: $primary-color;
+}
+          </code></pre>
+        </div>
+      </div>
+
+      <ul class="benefits">
+        <li><i class="fas fa-check-circle"></i> Avoid code duplication</li>
+        <li><i class="fas fa-check-circle"></i> Use placeholder selectors for clean, DRY styles</li>
+        <li><i class="fas fa-check-circle"></i> Easier to maintain shared styling</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- opretor section -->
+  <section id="operators" class="section operators-section">
+    <div class="container">
+      <h2 class="section-title">SASS Operators</h2>
+      <p class="section-intro">
+        Operators in SASS allow you to perform calculations, compare values, and create logic-based styles efficiently.
+      </p>
+
+      <div class="operators-card-wrapper">
+        <div class="operator-card">
+          <h3>Arithmetic Operators</h3>
+          <p>Perform calculations like addition, subtraction, multiplication, etc.</p>
+          <pre><code>$total: 100px + 20px;</code></pre>
+        </div>
+
+        <div class="operator-card">
+          <h3>Comparison Operators</h3>
+          <p>Compare values using <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>.</p>
+          <pre><code>@if $width &gt; 500px {
+  // styles
+}</code></pre>
+        </div>
+
+        <div class="operator-card">
+          <h3>Logical Operators</h3>
+          <p>Build conditional logic using <code>and</code>, <code>or</code>, <code>not</code>.</p>
+          <pre><code>@if $light and not $dark {
+  // styles
+}</code></pre>
+        </div>
+
+        <div class="operator-card">
+          <h3>String Operators</h3>
+          <p>Concatenate strings using <code>+</code>.</p>
+          <pre><code>$font-path: "fonts/" + "Roboto";</code></pre>
+        </div>
+
+        <div class="operator-card">
+          <h3>Color Operations</h3>
+          <p>Modify colors with color-based calculations.</p>
+          <pre><code>$new-color: #333 + #111;</code></pre>
+        </div>
+      </div>
+
+      <ul class="benefits">
+        <li><i class="fas fa-check-circle"></i> Helps with dynamic spacing and layout adjustments</li>
+        <li><i class="fas fa-check-circle"></i> Supports responsive and theme-based design</li>
+        <li><i class="fas fa-check-circle"></i> Reduces the need for repetitive hardcoded values</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Closing Section -->
+  <section class="section closing-section">
+    <div class="container">
+
+      <!-- Why Choose SASS -->
+      <div class="why-sass">
+        <h2 class="section-title">Why Choose SASS?</h2>
+        <p class="section-intro">SASS empowers developers with maintainable, scalable, and efficient styles.</p>
+
+        <div class="benefits-grid">
+          <div class="benefit-item"><i class="fas fa-cogs"></i> Modular Code</div>
+          <div class="benefit-item"><i class="fas fa-sync-alt"></i> Reusability</div>
+          <div class="benefit-item"><i class="fas fa-layer-group"></i> Better Structure</div>
+          <div class="benefit-item"><i class="fas fa-bolt"></i> Faster Styling</div>
+          <div class="benefit-item"><i class="fas fa-magic"></i> Cleaner Syntax</div>
+        </div>
+
+        <div class="cta-wrapper">
+          <a href="#header" class="cta-button">Start Learning SASS Today!</a>
+        </div>
+      </div>
+
+      <!-- SASS Best Practices -->
+      <div class="sass-practices">
+        <h2 class="section-title">SASS Best Practices</h2>
+        <ul class="practice-list">
+          <li><i class="fas fa-check"></i> Use variables for colors, fonts, and spacing</li>
+          <li><i class="fas fa-check"></i> Organize your files (7-1 pattern)</li>
+          <li><i class="fas fa-check"></i> Keep it DRY: Don’t Repeat Yourself</li>
+          <li><i class="fas fa-check"></i> Use mixins and functions effectively</li>
+          <li><i class="fas fa-check"></i> Use extend and placeholders carefully</li>
+        </ul>
+      </div>
+
+      <!-- Inspirational Quote -->
+      <div class="quote-section">
+        <div class="quote-card">
+          <p class="quote">“Code is poetry. SASS brings rhythm and meaning to your stylesheets.”</p>
+          <span class="quote-icon"><i class="fas fa-quote-left"></i></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container footer-container">
+
+      <!-- Column 1: About -->
+      <div class="footer-column">
+        <h3 class="footer-title">About SASSify</h3>
+        <p class="footer-text">
+          SASSify is a showcase project to learn, explore, and demonstrate the power of SASS. Designed with simplicity and structure in mind.
+        </p>
+        <a href="#header" class="footer-link">Back to Top</a>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-column">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#variables">Variables</a></li>
+          <li><a href="#mixins">Mixins</a></li>
+          <li><a href="#functions">Functions</a></li>
+          <li><a href="#extend">Extend</a></li>
+          <li><a href="#operators">Operators</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Connect -->
+      <div class="footer-column">
+        <h3 class="footer-title">Connect</h3>
+        <div class="social-icons">
+          <a href="https://github.com/AmolKamble4161" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/amol-kamble-7ba3a4242/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:amolkamble4161@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 <strong>SASSify</strong>. Made with ❤️ by Amol Kamble.</p>
+    </div>
+  </footer>
+
+
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- JS -->
+  <script src="./js/script.js"></script>
+
+</body>
+</html>
