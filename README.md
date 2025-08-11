@@ -1,4 +1,5 @@
 SASSify – Modern SASS Showcase Website
+
 SASSify is a responsive single-page website built with HTML, CSS, SCSS, JavaScript, and jQuery to demonstrate the power of SASS in real-world web design.
 It covers all major SASS features, including:
 
