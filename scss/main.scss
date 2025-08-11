@@ -1,0 +1,1001 @@
+@use "sass:color"; // ✅ Required for using color.adjust()
+
+$main-font: 'Outfit', sans-serif;
+
+// 🎨 THEME : Lavender Dreams
+
+// light theme
+$light-bg: #FAF7FF;
+$light-text: #1E1B2E;
+$light-accent: #EEE6FA;
+
+// dark Theme
+$dark-bg: #171322;
+$dark-text: #F0EAF9;
+$dark-accent: #241B33;
+
+$primary-color: #A78BFA;   // Soft lavender
+$secondary-color: #7C3AED; // Deep purple
+
+// Transition
+$transition: all 0.3s ease-in-out;
+// end of all important decleration =======
+
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $light-bg;
+  color: $light-text;
+  transition: $transition;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Theme Classes
+body.dark-theme {
+  background-color: $dark-bg;
+  color: $dark-text;
+}
+
+
+// ========= nav bar ===========
+.navbar {
+  position: fixed;
+  width: 100%;
+  padding: 1.5rem 0;
+  background-color: $light-accent;
+  transition: $transition;
+  z-index: 1000;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  .theme-toggle {
+    cursor: pointer;
+    font-size: 1.2rem;
+
+    .light-icon,
+    .dark-icon {
+      display: none;
+    }
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1010;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+
+    a {
+      font-weight: 600;
+      transition: $transition;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  // Dark theme navbar
+  body.dark-theme & {
+    background-color: $dark-accent;
+  }
+}
+
+
+
+// ======= Media Queries responsive navbar =======
+@media (max-width: 768px) {
+  .navbar {
+    .hamburger {
+      display: block;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 150%;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background-color: $light-bg;
+      display: none;
+      padding: 1rem 2rem;
+
+      a {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid $light-accent;
+      }
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    // Dark mode override
+    body.dark-theme & {
+      .nav-links {
+        background-color: $dark-bg;
+
+        a {
+          border-bottom: 1px solid $dark-accent;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+// ======== HERO SECTION SCSS ===========
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: $light-bg;
+  transition: $transition;
+
+  .hero-content {
+    text-align: center;
+
+    h1 {
+      font-size: 2.7rem;
+      margin-bottom: 1rem;
+      color: $primary-color;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $light-text;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .scroll-btn {
+      font-size: 1.5rem;
+      color: $primary-color;
+
+      i {
+        transition: transform 0.5s ease;
+      }
+
+      &:hover i {
+        transform: translateY(10px);
+      }
+    }
+  }
+}
+
+// Dark Theme
+body.dark-theme {
+  .hero {
+    background-color: $dark-bg;
+
+    .hero-content {
+      p {
+        color: $dark-text;
+      }
+    }
+  }
+}
+
+
+// ====== global section code
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  transition: $transition;
+}
+
+
+// ==============  Variables Section  =============
+.variables-section {
+  background-color: $light-accent;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: $primary-color;
+    margin-bottom: 2rem;
+  }
+
+  .section-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .text-content {
+      flex: 1 1 350px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: $light-text;
+
+      p {
+        margin-bottom: 1.5rem;
+      }
+
+      .benefits {
+        li {
+          font-size: 1rem;
+          margin-bottom: 0.8rem;
+          color: $light-text;
+
+          i {
+            color: $secondary-color;
+            margin-right: 0.4rem;
+          }
+        }
+      }
+    }
+
+    .code-block {
+      flex: 1 1 300px;
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      color: $light-text;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+    }
+  }
+}
+
+// ======= Dark Theme Support =======
+body.dark-theme {
+  .variables-section {
+    background-color: $dark-bg;
+
+    .text-content,
+    .text-content .benefits li,
+    .code-block {
+      color: $dark-text;
+    }
+
+    .code-block {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+  }
+}
+
+
+
+
+//=========== mixins section scss ========= 
+.mixins-section {
+  background-color: $light-bg;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: $light-text;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .card-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .code-card {
+    background-color: #f3f3f3;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    flex: 1 1 300px;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    h3 {
+      margin-bottom: 1rem;
+      color: $primary-color;
+      font-size: 1.2rem;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      color: $light-text;
+    }
+
+    &:hover {
+      transform: translateY(-15px);
+      box-shadow: 0px 30px 20px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .benefits {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 1rem;
+      font-size: 1rem;
+      color: $light-text;
+
+      i {
+        color: $secondary-color;
+        margin-right: 0.4rem;
+      }
+
+      @media (max-width: 600px) {
+        display: block;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
+}
+
+// Dark Theme for Mixins Section
+body.dark-theme {
+  .mixins-section {
+    background-color: $dark-bg;
+
+    .section-intro,
+    .code-card pre,
+    .benefits li {
+      color: $dark-text;
+    }
+
+    .code-card {
+      background-color: #222;
+
+      &:hover{
+        box-shadow: rgb(90 82 255 / 45%) 0px 25px 20px -20px;
+      }
+    }
+  }
+}
+
+
+
+
+// ==============  function section =========
+.functions-section {
+  background-color: $light-accent;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: $light-text;
+    max-width: 750px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .function-card-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .function-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    flex: 1 1 300px;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    h3 {
+      font-size: 1.4rem;
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: $light-text;
+    }
+
+    pre {
+      margin: 0;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: $light-text;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .benefits {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 1rem;
+      font-size: 1rem;
+      color: $light-text;
+
+      i {
+        color: $secondary-color;
+        margin-right: 0.4rem;
+      }
+
+      @media (max-width: 600px) {
+        display: block;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
+}
+
+// Dark Theme Support
+body.dark-theme {
+  .functions-section {
+    background-color: $dark-bg;
+
+    .section-intro,
+    .function-card pre,
+    .card-description,
+    .benefits li {
+      color: $dark-text;
+    }
+
+    .function-card {
+      background-color: #222;
+
+      pre {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+    }
+  }
+}
+
+
+
+
+// ===========  section extend ========= 
+.extend-section {
+  background-color: $light-bg;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: $light-text;
+    max-width: 750px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .extend-card-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .extend-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    flex: 1 1 300px;
+    max-width: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    h3 {
+      font-size: 1.4rem;
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: $light-text;
+    }
+
+    pre {
+      margin: 0;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: $light-text;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .benefits {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 1rem;
+      font-size: 1rem;
+      color: $light-text;
+
+      i {
+        color: $secondary-color;
+        margin-right: 0.4rem;
+      }
+
+      @media (max-width: 600px) {
+        display: block;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
+}
+
+// Dark Theme Support
+body.dark-theme {
+  .extend-section {
+    background-color: $dark-bg;
+
+    .section-intro,
+    .extend-card pre,
+    .card-description,
+    .benefits li {
+      color: $dark-text;
+    }
+
+    .extend-card {
+      background-color: #222;
+
+      pre {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+    }
+  }
+}
+
+
+// ==============  Operators Section  =============
+.operators-section {
+  background-color: $light-accent;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: $light-text;
+    max-width: 750px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .operators-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .operator-card {
+    background-color: #fff;
+    max-width: 300px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    h3 {
+      font-size: 1.4rem;
+      color: $primary-color;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: $light-text;
+    }
+
+    pre {
+      margin: 0;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: $light-text;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .benefits {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin: 0 1rem 0.8rem;
+      font-size: 1rem;
+      color: $light-text;
+
+      i {
+        color: $secondary-color;
+        margin-right: 0.4rem;
+      }
+
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
+  }
+}
+
+// ======= Dark Theme Support =======
+body.dark-theme {
+  .operators-section {
+    background-color: $dark-bg;
+
+    .section-intro,
+    .operator-card pre,
+    .operator-card p,
+    .benefits li {
+      color: $dark-text;
+    }
+
+    .operator-card {
+      background-color: #222;
+
+      pre {
+        background-color: #1a1a1a;
+        color: #eee;
+      }
+    }
+  }
+}
+
+
+
+// ============ last section ============
+.closing-section {
+  background-color: $light-bg;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin: 1rem auto;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.1rem;
+    color: $light-text;
+    line-height: 1.6;
+  }
+
+  .benefits-grid {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    text-align: center;
+
+    .benefit-item {
+      background-color: #f0f0f0;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      font-size: 1rem;
+      min-width: 200px;
+      font-weight: 500;
+      color: $light-text;
+      transition: $transition;
+
+      i {
+        color: $secondary-color;
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  .cta-wrapper {
+    text-align: center;
+    margin: 3rem auto;
+
+    .cta-button {
+      display: inline-block;
+      background-color: $primary-color;
+      color: #fff;
+      padding: 1.2rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: $transition;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  .sass-practices {
+
+    .practice-list {
+      max-width: 800px;
+      margin: 0 auto;
+      columns: 2;
+
+      li {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        color: $light-text;
+
+        i {
+          color: $secondary-color;
+          margin-right: 0.5rem;
+        }
+      }
+
+      @media (max-width: 700px) {
+        columns: 1;        
+      }
+    }
+  }
+
+  .quote-section {
+    margin-top: 4rem;
+    text-align: center;
+
+    .quote-card {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+
+      .quote {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: $primary-color;
+        margin: 0;
+      }
+
+      .quote-icon {
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        font-size: 2rem;
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+// Dark Theme Support
+body.dark-theme {
+  .closing-section {
+    background-color: $dark-bg;
+
+    .section-intro,
+    .benefit-item,
+    .practice-list li,
+    .quote-card {
+      color: $dark-text;
+    }
+
+    .benefit-item {      
+      background-color: #222;
+    }
+
+    .quote {
+      color: $secondary-color;
+    }
+  }
+}
+
+
+
+
+
+//============= footer =============
+.footer {
+  background-color: $primary-color;
+  color: $light-bg;
+  font-family: $main-font;
+  padding: 60px 20px 20px;
+  transition: $transition;
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+  }
+
+  .footer-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: $light-bg;
+  }
+
+  .footer-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: $light-bg;
+  }
+
+  .footer-link {
+    display: inline-block;
+    color: $light-bg;
+    text-decoration: underline;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: $transition;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 8px;
+
+      a {
+        color: $light-bg;
+        text-decoration: none;
+        transition: $transition;
+
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 1.4rem;
+
+    a {
+      color: $light-bg;
+      transition: $transition;
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: $light-bg;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+  }
+}
+ 
